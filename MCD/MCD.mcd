@@ -1,0 +1,23 @@
+DISPUTER, 0N JOUEUR_PRO, 22 MATCH_OPEN : est_vainqueur
+JOUEUR_PRO: id_joueur_pro, nom, prenom, nationalite, classement_fft, classement_atp
+:
+:
+:
+
+MATCH_OPEN: id_match, tour_tableau, date_heure, score
+SE_JOUER, 11 MATCH_OPEN, 0N COURT
+COURT: id_court, nom_court, surface, est_couvert
+RESERVER, 0N MEMBRE, 0N COURT : date, heure_debut
+ACTUALITE: id_actu, titre, contenu, date_publication, categorie
+
+APPARTENIR, 11 MATCH_OPEN, 0N EVENEMENT
+EVENEMENT: id_evenement, titre, date_debut, date_fin, est_mode_open_86
+AIDER_OPEN, 0N EVENEMENT, 0N MEMBRE : role_benevole
+MEMBRE: id_membre, nom, prenom, email, telephone, classement_tennis, role_admin
+REDIGER, 0N MEMBRE, 11 ACTUALITE
+
+PARTENAIRE: id_partenaire, nom_partenaire, logo_url
+SPONSORISER, 0N PARTENAIRE, 0N EVENEMENT : niveau_sponsoring
+FORMULE: id_formule, nom_formule, public_cible, tarif
+SOUSCRIRE, 0N MEMBRE, 0N FORMULE : annee_sportive
+:
