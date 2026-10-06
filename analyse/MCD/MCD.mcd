@@ -1,0 +1,34 @@
+MEDIA: id_media, nom, fichier, type_mime, taille
+CLASSER, 0N CATEGORIE, 11 PAGE
+CATEGORIE: id_categorie, nom, description
+PARTENAIRE: id_partenaire, nom, logo, url, description
+APPARTENIR_DOMAINE, 11 PARTENAIRE, 0N DOMAINE
+TARIF_FORMATION: id_tarif, nom, montant, periode
+
+ILLUSTRER, 0N MEDIA, 01 PAGE
+PAGE: id_page, titre, slug, contenu, est_publie, est_mode_open_86
+COMPORTER, 0N PAGE, 0N TAG
+TAG: id_tag, nom
+DOMAINE: id_domaine, nom, description
+ASSOCIER, 1N COURS_FORMATION, 0N TARIF_FORMATION
+
+SECTION_ACCUEIL: id_section, titre, contenu, ordre, type, est_mode_open_86
+REDIGER, 0N USER, 11 PAGE
+USER: id_user, email, roles, password, nom, prenom
+PALMARES: id_palmares, annee, competition, resultat
+OBTENIR, 0N JOUEUR, 11 PALMARES
+COURS_FORMATION: id_cours, nom, description, est_actif
+
+COMPETITION: id_competition, nom, type, date_debut, date_fin, est_open_86
+APPARTENIR_COMPET, 11 MATCH_TENNIS, 0N COMPETITION
+MATCH_TENNIS: id_match, date_match, score_dom, score_ext, lieu
+JOUER_EXTERIEUR, 11 MATCH_TENNIS, 0N EQUIPE
+JOUEUR: id_joueur, nom, prenom, classement, sexe
+DISPENSER, 0N ENSEIGNANT, 0N COURS_FORMATION
+
+MEMBRE_MANAGEMENT: id_membre, nom, prenom, fonction, photo
+DOC_ADMIN: id_document, titre, fichier, categorie, date_ajout
+JOUER_DOMICILE, 11 MATCH_TENNIS, 0N EQUIPE
+EQUIPE: id_equipe, nom, ville, categorie
+COMPOSER, 0N JOUEUR, 0N EQUIPE
+ENSEIGNANT: id_enseignant, nom, prenom, email, photo
