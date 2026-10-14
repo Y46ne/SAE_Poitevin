@@ -8,3 +8,5 @@ CLAUDE.md
 #python
 
 *.pyc
+
+frontend/node_modules/
