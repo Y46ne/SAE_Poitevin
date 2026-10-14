@@ -3,3 +3,8 @@
 .github/
 AGENTS.md
 CLAUDE.md
+
+
+#python
+
+*.pyc
