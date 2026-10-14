@@ -10,3 +10,4 @@ CLAUDE.md
 *.pyc
 
 frontend/node_modules/
+.env
