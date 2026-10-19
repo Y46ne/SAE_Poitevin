@@ -3,28 +3,8 @@ from django.db.models import Q
 from apps.core.models import MediaAsset
 
 
-class PartnerCategory(models.Model):
-    name = models.CharField(max_length=100)
-    position = models.PositiveIntegerField(default=0)
 
-    class Meta:
-        ordering = ["position", "name"]
-        indexes = [models.Index(fields=["position"])]
-
-
-class Partner(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    slug = models.SlugField(max_length=255, unique=True)
-    logo = models.ForeignKey(MediaAsset, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
-    website = models.URLField(blank=True)
-    description = models.TextField(blank=True)
-    category = models.ForeignKey(PartnerCategory, null=True, blank=True, on_delete=models.SET_NULL, related_name="partners")
-    is_active = models.BooleanField(default=True)
-
-    class Meta:
-        ordering = ["name"]
-        indexes = [models.Index(fields=["is_active"]), models.Index(fields=["category", "is_active"])]
-
+from .partner import Partner
 
 class PartnerPlacement(models.Model):
     partner = models.ForeignKey(Partner, on_delete=models.PROTECT, related_name="placements")

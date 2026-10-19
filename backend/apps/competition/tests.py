@@ -1,7 +1,9 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from .models import Competition, CompetitionEdition, CompetitionTeam, Match, SportsSeason, Team
+from apps.training.models import SportsSeason
+
+from .models import Competition, CompetitionEdition, CompetitionTeam, Match, Team
 
 
 class MatchValidationTests(TestCase):
