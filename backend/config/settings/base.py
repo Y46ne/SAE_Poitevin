@@ -24,7 +24,14 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "corsheaders",
-    "apps.legacy.apps.LegacyConfig",
+    "apps.core.apps.CoreConfig",
+    "apps.content.apps.ContentConfig",
+    "apps.home.apps.HomeConfig",
+    "apps.club.apps.ClubConfig",
+    "apps.training.apps.TrainingConfig",
+    "apps.competition.apps.CompetitionConfig",
+    "apps.partners.apps.PartnersConfig",
+    "apps.open86.apps.Open86Config",
 ]
 
 MIDDLEWARE = [
