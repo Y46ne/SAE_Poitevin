@@ -5,7 +5,7 @@ The deployment supplies the database and secret through environment variables.
 
 import os
 
-from .base import *  # noqa: F401,F403
+from .base import *
 
 DEBUG = False
 ALLOWED_HOSTS = [
