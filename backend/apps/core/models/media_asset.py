@@ -2,27 +2,8 @@ from django.db import models
 from django.utils import timezone
 
 
-class TimestampedModel(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
-    class Meta:
-        abstract = True
-
-
-class PublishableModel(TimestampedModel):
-    is_published = models.BooleanField(default=False)
-    published_at = models.DateTimeField(null=True, blank=True)
-
-    class Meta:
-        abstract = True
-
-    @property
-    def is_public(self):
-        return self.is_published and (
-            self.published_at is None or self.published_at <= timezone.now()
-        )
-
+from .timestamped_model import TimestampedModel
 
 class MediaAsset(TimestampedModel):
     file = models.FileField(upload_to="media/%Y/%m/")
