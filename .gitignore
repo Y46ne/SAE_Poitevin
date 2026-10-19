@@ -1,6 +1,8 @@
 .claude/
 .codex/
-.github/
+.github/*
+!.github/workflows/
+!.github/workflows/**
 AGENTS.md
 CLAUDE.md
 
@@ -8,4 +10,6 @@ CLAUDE.md
 #python
 
 *.pyc
+
+frontend/node_modules/
 .env
