@@ -1,9 +1,7 @@
 .claude/
-.codex/
 .github/*
 !.github/workflows/
 !.github/workflows/**
-AGENTS.md
 CLAUDE.md
 
 

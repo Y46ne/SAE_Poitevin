@@ -4,5 +4,3 @@ line-length = 88
 ignore = ["F401", "F403", "F405"]
 
 [lint.per-file-ignores]
-"apps/legacy/**/*.py" = ["I001", "RUF012", "RUF022"]
-"apps/legacy/migrations/*.py" = ["RUF012"]
