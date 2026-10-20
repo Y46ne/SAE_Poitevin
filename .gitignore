@@ -3,6 +3,7 @@
 !.github/workflows/
 !.github/workflows/**
 CLAUDE.md
+PROJECT_PROGRESS.md
 
 
 #python
