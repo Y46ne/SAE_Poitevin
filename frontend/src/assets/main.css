@@ -120,6 +120,50 @@
   color: #536761;
 }
 
+.section-page {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.section-hero {
+  padding: 3rem 0;
+}
+
+.section-hero h1 {
+  margin-top: 0.5rem;
+  color: #183b36;
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+}
+
+.section-groups {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.content-group {
+  min-height: 10rem;
+  padding: 1.25rem;
+  border: 1px solid #d9e5e1;
+  border-radius: 0.75rem;
+  background: #fff;
+  box-shadow: 0 0.5rem 2rem rgb(24 59 54 / 8%);
+}
+
+.content-group h2 {
+  margin-bottom: 1rem;
+  color: #183b36;
+  font-size: 1.2rem;
+}
+
+.content-list {
+  display: grid;
+  gap: 0.65rem;
+  padding-left: 1.25rem;
+  color: #536761;
+}
+
 @media (max-width: 700px) {
   .site-header,
   .site-footer {

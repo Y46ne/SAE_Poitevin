@@ -7,7 +7,7 @@
 
 - Date : 2026-10-20
 - Branche de travail : `backend`
-- Étape en cours : fondation Django + Vue sans API REST
+- Étape en cours : pages métier Django sans API REST
 
 ## Objectif du projet
 
@@ -73,6 +73,9 @@ Docker n'est pas utilisé actuellement. Le projet fonctionne localement avec SQL
 - [x] Bundle Vue produit par Vite dans les fichiers statiques Django.
 - [x] Premier composant Vue d'accueil avec affichage interactif des blocs.
 - [x] Tests Django de la vue d'accueil.
+- [x] Pages Django du Club, des Articles, de la Formation, de la Compétition, des Partenaires et de l'Open 86.
+- [x] Navigation globale vers toutes les sections publiques.
+- [x] États vides propres quand aucun contenu n'est publié.
 
 ### Qualité
 
@@ -87,18 +90,18 @@ Docker n'est pas utilisé actuellement. Le projet fonctionne localement avec SQL
 
 ## État actuel
 
-Le backend contient les modèles métier et l'administration Django. La page d'accueil
-est maintenant rendue par Django et enrichie par Vue. Les autres pages métier restent
-à convertir progressivement sur le même modèle.
+Le backend contient les modèles métier, l'administration Django et les pages publiques
+de chaque domaine. Django rend les données et Vue enrichit l'accueil avec ses
+interactions. Les détails et formulaires spécifiques pourront être enrichis ensuite.
 
 ## Prochaine étape
 
-La prochaine étape est de convertir la première page métier après l'accueil et de
-factoriser les composants Vue réutilisables.
+La prochaine étape est d'enrichir les pages métier avec leurs détails, médias et
+formulaires, puis de préparer les tests navigateur.
 
 ## Étapes suivantes
 
-1. Conversion progressive des pages métier en vues/templates Django.
+1. Détails, médias et formulaires des pages métier.
 2. Configuration des uploads et des fichiers médias.
 3. Tests frontend et tests Playwright.
 4. Gestion des permissions et du groupe bénévole.

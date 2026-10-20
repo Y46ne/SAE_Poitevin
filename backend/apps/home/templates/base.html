@@ -12,11 +12,12 @@
       <a class="site-brand" href="{% url 'home' %}">Stade Poitevin Tennis</a>
       <nav aria-label="Navigation principale">
         <a href="{% url 'home' %}">Accueil</a>
-        <a href="/club/">Club</a>
-        <a href="/competition/">Compétition</a>
-        <a href="/training/">Formation</a>
-        <a href="/partners/">Partenaires</a>
-        <a href="/open86/">Open 86</a>
+        <a href="{% url 'club' %}">Club</a>
+        <a href="{% url 'articles' %}">Articles</a>
+        <a href="{% url 'competition' %}">Compétition</a>
+        <a href="{% url 'training' %}">Formation</a>
+        <a href="{% url 'partners' %}">Partenaires</a>
+        <a href="{% url 'open86' %}">Open 86</a>
       </nav>
     </header>
 
