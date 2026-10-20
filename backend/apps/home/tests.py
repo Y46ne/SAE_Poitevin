@@ -24,6 +24,8 @@ class HomePageViewTests(TestCase):
         response = self.client.get(reverse("home"))
 
         self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Navigation principale")
+        self.assertContains(response, 'href="/club/"')
         self.assertEqual(response.context["home_data"]["blocks"][0]["title"], "Actualités")
         self.assertNotIn(
             "Brouillon",

@@ -1,15 +1,10 @@
+{% extends "base.html" %}
 {% load static %}
-<!doctype html>
-<html lang="fr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ home_data.name }} | Stade Poitevin Tennis</title>
-    <link rel="stylesheet" href="{% static 'frontend/app.css' %}">
-  </head>
-  <body>
+
+{% block title %}{{ home_data.name }} | Stade Poitevin Tennis{% endblock %}
+
+{% block content %}
     <div id="app"></div>
     {{ home_data|json_script:"home-data" }}
     <script type="module" src="{% static 'frontend/app.js' %}"></script>
-  </body>
-</html>
+{% endblock %}
