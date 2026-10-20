@@ -15,11 +15,13 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://127.0.0.1:8000',
-        changeOrigin: true,
+  build: {
+    outDir: '../backend/static',
+    emptyOutDir: false,
+    rollupOptions: {
+      output: {
+        entryFileNames: 'frontend/app.js',
+        assetFileNames: 'frontend/app.[ext]',
       },
     },
   },

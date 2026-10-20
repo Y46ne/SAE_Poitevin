@@ -4,6 +4,7 @@
 !.github/workflows/**
 CLAUDE.md
 PROJECT_PROGRESS.md
+PROJECT_HANDOFF.md
 
 
 #python
@@ -12,3 +13,4 @@ PROJECT_PROGRESS.md
 
 frontend/node_modules/
 .env
+backend/static/

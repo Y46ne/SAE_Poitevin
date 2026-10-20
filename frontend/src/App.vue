@@ -1,85 +1,35 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { computed, ref } from 'vue'
+
+const homeElement = document.getElementById('home-data')
+const home = homeElement ? JSON.parse(homeElement.textContent) : { name: '', blocks: [] }
+const selectedBlock = ref(null)
+
+const blocks = computed(() => home.blocks || [])
+
+function selectBlock(block) {
+  selectedBlock.value = selectedBlock.value?.id === block.id ? null : block
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <main class="home">
+    <header class="hero">
+      <p class="eyebrow">Stade Poitevin Tennis</p>
+      <h1>{{ home.name }}</h1>
+      <p>Le tennis au coeur de Poitiers.</p>
+    </header>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+    <section v-if="blocks.length" class="blocks" aria-label="À la une">
+      <article v-for="block in blocks" :key="block.id" class="block">
+        <button type="button" class="block-button" @click="selectBlock(block)">
+          <span class="block-type">{{ block.type }}</span>
+          <strong>{{ block.title || 'À la une' }}</strong>
+          <span v-if="block.subtitle">{{ block.subtitle }}</span>
+        </button>
+        <pre v-if="selectedBlock?.id === block.id">{{ block.settings }}</pre>
+      </article>
+    </section>
+    <p v-else class="empty-state">Les actualités du club arrivent bientôt.</p>
+  </main>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
