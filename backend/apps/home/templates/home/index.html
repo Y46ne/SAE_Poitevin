@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ home_data.name }} | Stade Poitevin Tennis{% endblock %}
+
+{% block content %}
+    <div id="app"></div>
+    {{ home_data|json_script:"home-data" }}
+    <script type="module" src="{% static 'frontend/app.js' %}"></script>
+{% endblock %}

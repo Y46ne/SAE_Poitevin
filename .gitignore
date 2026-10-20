@@ -12,3 +12,4 @@ PROJECT_PROGRESS.md
 
 frontend/node_modules/
 .env
+backend/static/

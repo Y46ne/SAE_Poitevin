@@ -1,0 +1,31 @@
+{% load static %}
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Stade Poitevin Tennis{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'frontend/app.css' %}">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-brand" href="{% url 'home' %}">Stade Poitevin Tennis</a>
+      <nav aria-label="Navigation principale">
+        <a href="{% url 'home' %}">Accueil</a>
+        <a href="{% url 'club' %}">Club</a>
+        <a href="{% url 'articles' %}">Articles</a>
+        <a href="{% url 'competition' %}">Compétition</a>
+        <a href="{% url 'training' %}">Formation</a>
+        <a href="{% url 'partners' %}">Partenaires</a>
+        <a href="{% url 'open86' %}">Open 86</a>
+      </nav>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer class="site-footer">
+      <p>Stade Poitevin Tennis</p>
+      <p>Le tennis au coeur de Poitiers.</p>
+    </footer>
+  </body>
+</html>
