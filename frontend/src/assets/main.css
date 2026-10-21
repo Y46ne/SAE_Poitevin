@@ -1,9 +1,5 @@
 @import './base.css';
 
-#app {
-  min-height: 100vh;
-}
-
 .site-header {
   display: flex;
   align-items: center;
@@ -81,39 +77,18 @@
 }
 
 .block {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1.25rem;
   border: 1px solid #d9e5e1;
   border-radius: 0.75rem;
   background: #fff;
   box-shadow: 0 0.5rem 2rem rgb(24 59 54 / 8%);
 }
 
-.block-button {
-  display: grid;
-  gap: 0.5rem;
-  width: 100%;
-  padding: 1.25rem;
-  border: 0;
-  color: inherit;
-  background: transparent;
-  cursor: pointer;
-  text-align: left;
-}
-
-.block-button strong {
+.block h2 {
   color: #183b36;
   font-size: 1.25rem;
-}
-
-.block-button:hover,
-.block-button:focus-visible {
-  background: #f1f8f5;
-}
-
-.block pre {
-  margin: 0;
-  padding: 0 1.25rem 1.25rem;
-  overflow: auto;
-  white-space: pre-wrap;
 }
 
 .empty-state {

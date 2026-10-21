@@ -2,26 +2,26 @@ import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
+// Pas de serveur de dev Vite : le bundle est servi par Django depuis /static/frontend/.
 export default defineConfig({
-  plugins: [
-    vue(),
-    vueDevTools(),
-  ],
+  plugins: [vue()],
+  base: '/static/frontend/',
+  publicDir: false,
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
   build: {
-    outDir: '../backend/static',
-    emptyOutDir: false,
+    outDir: '../backend/static/frontend',
+    emptyOutDir: true,
     rollupOptions: {
+      input: fileURLToPath(new URL('./src/main.js', import.meta.url)),
       output: {
-        entryFileNames: 'frontend/app.js',
-        assetFileNames: 'frontend/app.[ext]',
+        entryFileNames: 'app.js',
+        assetFileNames: 'app.[ext]',
       },
     },
   },
