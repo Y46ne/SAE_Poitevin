@@ -15,4 +15,3 @@ docs/
 frontend/node_modules/
 .env
 backend/static/
-backend/media/
