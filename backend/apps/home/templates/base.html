@@ -5,28 +5,45 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Stade Poitevin Tennis{% endblock %}</title>
+    {% block meta %}{% endblock %}
     <link rel="icon" href="{% static 'favicon.ico' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="{% static 'frontend/app.css' %}">
   </head>
   <body>
-    <header class="site-header">
-      <a class="site-brand" href="{% url 'home' %}">Stade Poitevin Tennis</a>
-      <nav aria-label="Navigation principale">
-        <a href="{% url 'home' %}">Accueil</a>
-        <a href="{% url 'club' %}">Club</a>
-        <a href="{% url 'articles' %}">Articles</a>
-        <a href="{% url 'competition' %}">Compétition</a>
-        <a href="{% url 'training' %}">Formation</a>
-        <a href="{% url 'partners' %}">Partenaires</a>
-        <a href="{% url 'open86' %}">Open 86</a>
-      </nav>
-    </header>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
 
-    {% block content %}{% endblock %}
+    {% with current=request.resolver_match.url_name %}
+      <header class="site-header">
+        <div class="container site-header-inner">
+          <a class="site-brand" href="{% url 'home' %}">
+            <img src="{% static 'logo.png' %}" alt="" width="64" height="64">
+            <span>Stade Poitevin<br>Tennis</span>
+          </a>
+          <nav class="site-nav" aria-label="Navigation principale">
+            <a href="{% url 'home' %}"{% if current == 'home' %} aria-current="page"{% endif %}>Accueil</a>
+            <a href="{% url 'club' %}"{% if current == 'club' %} aria-current="page"{% endif %}>Club</a>
+            <a href="{% url 'articles' %}"{% if current == 'articles' %} aria-current="page"{% endif %}>Articles</a>
+            <a href="{% url 'competition' %}"{% if current == 'competition' %} aria-current="page"{% endif %}>Compétition</a>
+            <a href="{% url 'training' %}"{% if current == 'training' %} aria-current="page"{% endif %}>Formation</a>
+            <a href="{% url 'partners' %}"{% if current == 'partners' %} aria-current="page"{% endif %}>Partenaires</a>
+            <a class="nav-open" href="{% url 'open86' %}"{% if current == 'open86' %} aria-current="page"{% endif %}>Open 86</a>
+          </nav>
+        </div>
+      </header>
+    {% endwith %}
+
+    <div id="contenu">
+      {% block content %}{% endblock %}
+    </div>
 
     <footer class="site-footer">
-      <p>Stade Poitevin Tennis</p>
-      <p>Le tennis au coeur de Poitiers.</p>
+      <div class="container site-footer-inner">
+        <p class="site-footer-name">Stade Poitevin Tennis</p>
+        <p>Tennis et padel au coeur de Poitiers.</p>
+      </div>
     </footer>
 
     {# Seules les pages avec un îlot Vue ([data-vue]) remplissent ce bloc avec frontend/app.js. #}

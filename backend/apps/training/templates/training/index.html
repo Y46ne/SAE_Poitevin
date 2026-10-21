@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Formation et tarifs | Stade Poitevin Tennis{% endblock %}
+
+{% block content %}
+  <main>
+    <header class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Formation</p>
+        <h1>École de tennis <span class="accent">&amp;</span> tarifs</h1>
+        {% if season %}
+          <p class="lead">Saison {{ season.label }}</p>
+        {% endif %}
+        <div class="actions">
+          <a class="button" href="#tarifs">Voir les tarifs</a>
+          <a class="button button-outline-light" href="{% url 'club' %}">Découvrir le club</a>
+        </div>
+      </div>
+    </header>
+
+    <section id="tarifs" class="section container" aria-labelledby="offers-title">
+      <h2 id="offers-title" class="section-title">Nos formules</h2>
+
+      {% if offers %}
+        <div class="card-grid card-grid-top">
+          {% for offer in offers %}
+            <article class="card offer-card">
+              {% if offer.cover %}
+                <img class="card-photo" src="{{ offer.cover.file.url }}" alt="{{ offer.cover.alt_text }}" loading="lazy">
+              {% endif %}
+              <div class="card-body">
+                {% if offer.audience %}
+                  <p class="badge">{{ offer.audience }}</p>
+                {% endif %}
+                <h3 class="card-title">{{ offer.name }}</h3>
+                {% if offer.description %}
+                  <p class="card-text">{{ offer.description }}</p>
+                {% endif %}
+
+                {% if offer.prices.all %}
+                  <ul class="price-list">
+                    {% for price in offer.prices.all %}
+                      <li>
+                        <span class="price-label">
+                          {{ price.label }}
+                          {% if price.description %}<small>{{ price.description }}</small>{% endif %}
+                        </span>
+                        <span class="price-amount">{{ price.amount|floatformat:"-2" }}&nbsp;€{% if price.unit %}<small>/ {{ price.unit }}</small>{% endif %}</span>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="empty-state">Les tarifs de la saison seront bientôt publiés.</p>
+      {% endif %}
+    </section>
+
+    {% if coaches %}
+      <section class="section container" aria-labelledby="coaches-title">
+        <h2 id="coaches-title" class="section-title">L'équipe pédagogique</h2>
+        <div class="card-grid">
+          {% for coach in coaches %}
+            <article class="card">
+              {% if coach.photo %}
+                <img class="card-photo" src="{{ coach.photo.file.url }}" alt="{{ coach.first_name }} {{ coach.last_name }}" loading="lazy">
+              {% endif %}
+              <div class="card-body">
+                {% if coach.qualification %}<p class="badge">{{ coach.qualification }}</p>{% endif %}
+                <h3 class="card-title">{{ coach.first_name }} {{ coach.last_name }}</h3>
+                {% if coach.role %}<p class="card-text">{{ coach.role }}</p>{% endif %}
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+  </main>
+{% endblock %}

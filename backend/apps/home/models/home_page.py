@@ -1,11 +1,12 @@
 from django.db import models
 from django.db.models import Q
-from apps.core.models import PublishableModel, TimestampedModel
+from apps.core.models import MediaAsset, PublishableModel, TimestampedModel
 
 
 
 class HomePage(TimestampedModel):
     name = models.CharField(max_length=100, default="Accueil")
+    cover = models.ForeignKey(MediaAsset, null=True, blank=True, on_delete=models.SET_NULL, related_name="+", verbose_name="photo du bandeau")
     is_active = models.BooleanField(default=True)
 
     class Meta:

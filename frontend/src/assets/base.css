@@ -1,7 +1,25 @@
+/* Charte graphique 2026 : noir et blanc dominants, vert court pour les actions, balle en touches. */
 :root {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #183b36;
-  background: #f7faf9;
+  --black: #111111;
+  --white: #ffffff;
+  --grey: #6b6b6b;
+  --court: #1f7a4d;
+  --court-dark: #17603c;
+  --ball: #d6e83a;
+  --chalk: #e3ddcf;
+  --page: #f4f4f2;
+
+  --font-title: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-text: 'Barlow', 'Segoe UI', sans-serif;
+
+  --radius-button: 8px;
+  --radius-card: 12px;
+  --shadow: 0 2px 8px rgb(17 17 17 / 6%);
+  --shadow-hover: 0 10px 24px rgb(17 17 17 / 14%);
+
+  font-family: var(--font-text);
+  color: var(--black);
+  background: var(--page);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -15,11 +33,36 @@
 
 body {
   min-height: 100vh;
+  font-size: 17px;
   line-height: 1.6;
-  font-size: 15px;
   -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
 
 a {
   color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+/* Les ancres (#tarifs…) ne passent pas sous l'en-tête collant. */
+[id] {
+  scroll-margin-top: 7rem;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ball);
+  outline-offset: 2px;
 }

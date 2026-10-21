@@ -36,3 +36,10 @@ class HomeBlock(PublishableModel):
             models.UniqueConstraint(fields=["home_page", "position"], name="home_block_position_unique"),
             models.CheckConstraint(condition=Q(ends_at__isnull=True) | Q(starts_at__isnull=True) | Q(ends_at__gte=models.F("starts_at")), name="home_block_ends_after_start"),
         ]
+
+    @property
+    def figure(self):
+        """Chiffre clé d'un bloc « Information », saisi dans settings : {"value": "9"}."""
+        if self.block_type == self.TYPE_INFO and isinstance(self.settings, dict):
+            return str(self.settings.get("value", ""))
+        return ""

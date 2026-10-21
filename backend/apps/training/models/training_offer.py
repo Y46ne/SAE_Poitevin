@@ -10,6 +10,7 @@ class TrainingOffer(PublishableModel):
     slug = models.SlugField(max_length=255, unique=True)
     description = models.TextField(blank=True)
     audience = models.CharField(max_length=100, blank=True)
+    cover = models.ForeignKey(MediaAsset, null=True, blank=True, on_delete=models.SET_NULL, related_name="+", verbose_name="photo")
     position = models.PositiveIntegerField(default=0)
 
     class Meta:

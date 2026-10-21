@@ -3,27 +3,33 @@
 {% block title %}{{ section_title }} | Stade Poitevin Tennis{% endblock %}
 
 {% block content %}
-  <main class="section-page">
-    <header class="section-hero">
-      <p class="eyebrow">Stade Poitevin Tennis</p>
-      <h1>{{ section_title }}</h1>
+  <main>
+    <header class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Stade Poitevin Tennis</p>
+        <h1>{{ section_title }}</h1>
+      </div>
     </header>
 
-    <div class="section-groups">
-      {% for group in groups %}
-        <section class="content-group" aria-labelledby="group-{{ forloop.counter }}">
-          <h2 id="group-{{ forloop.counter }}">{{ group.title }}</h2>
-          {% if group.items %}
-            <ul class="content-list">
-              {% for item in group.items %}
-                <li>{{ item.label }}</li>
-              {% endfor %}
-            </ul>
-          {% else %}
-            <p class="empty-state">Aucun contenu publié pour le moment.</p>
-          {% endif %}
-        </section>
-      {% endfor %}
+    <div class="section container">
+      <div class="card-grid">
+        {% for group in groups %}
+          <section class="card" aria-labelledby="group-{{ forloop.counter }}">
+            <div class="card-body">
+              <h2 id="group-{{ forloop.counter }}" class="card-title">{{ group.title }}</h2>
+              {% if group.items %}
+                <ul class="content-list">
+                  {% for item in group.items %}
+                    <li>{{ item.label }}</li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <p class="empty-state">Aucun contenu publié pour le moment.</p>
+              {% endif %}
+            </div>
+          </section>
+        {% endfor %}
+      </div>
     </div>
   </main>
 {% endblock %}

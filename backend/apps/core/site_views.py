@@ -24,7 +24,6 @@ from apps.open86.models import (
     OpenProgramItem,
 )
 from apps.partners.models import Partner, PartnerCategory
-from apps.training.models import Coach, SportsSeason, TrainingOffer, TrainingPrice
 
 
 def _public(queryset):
@@ -68,12 +67,6 @@ def _section_groups():
         ("Articles du club", _public(Article.objects.filter(scope=Article.SCOPE_CLUB))),
         ("Articles de l'Open 86", _public(Article.objects.filter(scope=Article.SCOPE_OPEN))),
         ),
-        "training": (
-        ("Saisons", SportsSeason.objects.all()),
-        ("Offres", _public(TrainingOffer.objects.all())),
-        ("Tarifs", TrainingPrice.objects.select_related("offer", "season")),
-        ("Enseignants", _public(Coach.objects.all())),
-        ),
         "competition": (
         ("Compétitions", Competition.objects.all()),
         ("Éditions", CompetitionEdition.objects.all()),
@@ -100,7 +93,6 @@ def section_page(request, section):
     titles = {
         "club": "Le club",
         "articles": "Articles",
-        "training": "Formation",
         "competition": "Compétition",
         "partners": "Partenaires",
         "open86": "Open Masculin 86",

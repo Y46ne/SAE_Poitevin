@@ -1,29 +1,119 @@
 {% extends "base.html" %}
 
-{% block title %}{{ page.name }} | Stade Poitevin Tennis{% endblock %}
+{% block title %}{{ club.name|default:"Stade Poitevin Tennis" }}{% endblock %}
+
+{% block meta %}
+  <meta name="description" content="{{ club.short_description|default:'Le tennis au coeur de Poitiers.' }}">
+  <meta property="og:title" content="{{ club.name|default:'Stade Poitevin Tennis' }}">
+  <meta property="og:description" content="{{ club.short_description|default:'Le tennis au coeur de Poitiers.' }}">
+  {% if page.cover %}
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ page.cover.file.url }}">
+  {% endif %}
+{% endblock %}
 
 {% block content %}
-  <main class="home">
-    <header class="hero">
-      <p class="eyebrow">Stade Poitevin Tennis</p>
-      <h1>{{ page.name }}</h1>
-      <p>Le tennis au coeur de Poitiers.</p>
+  <main>
+    <header class="hero{% if page.cover %} hero-photo{% endif %}">
+      {% if page.cover %}
+        <img class="hero-image" src="{{ page.cover.file.url }}" alt="{{ page.cover.alt_text }}">
+      {% endif %}
+      <div class="hero-content container">
+        <p class="eyebrow">Tennis · Padel · Poitiers</p>
+        <h1>{{ club.name|default:"Stade Poitevin Tennis" }}</h1>
+        <p class="lead">{{ club.short_description|default:"Le tennis au coeur de Poitiers." }}</p>
+        <div class="actions">
+          <a class="button" href="{% url 'training' %}">Se réinscrire</a>
+          <a class="button button-outline-light" href="{% url 'club' %}">Découvrir le club</a>
+        </div>
+      </div>
     </header>
 
-    {% if blocks %}
-      <section class="blocks" aria-label="À la une">
-        {% for block in blocks %}
-          <article class="block">
-            <p class="block-type">{{ block.get_block_type_display }}</p>
-            <h2>{{ block.title|default:"À la une" }}</h2>
-            {% if block.subtitle %}
-              <p>{{ block.subtitle }}</p>
-            {% endif %}
-          </article>
-        {% endfor %}
+    {% if figures %}
+      <section class="section container" aria-label="Le club en chiffres">
+        <div class="figure-grid">
+          {% for block in figures %}
+            <article class="card card-dark figure-card">
+              <p class="figure-value">{{ block.figure }}</p>
+              <h2 class="figure-label">{{ block.title }}</h2>
+              {% if block.subtitle %}<p>{{ block.subtitle }}</p>{% endif %}
+            </article>
+          {% endfor %}
+        </div>
       </section>
-    {% else %}
-      <p class="empty-state">Les actualités du club arrivent bientôt.</p>
+    {% endif %}
+
+    <section class="section container" aria-labelledby="featured-title">
+      <h2 id="featured-title" class="section-title">À la une</h2>
+
+      {% if featured %}
+        {% for block in featured %}
+          <div class="featured-block">
+            {% if block.articles.all %}
+              {% if block.title %}<h3 class="block-title">{{ block.title }}</h3>{% endif %}
+              <div class="card-grid">
+                {% for article in block.articles.all %}
+                  <article class="card">
+                    {% if article.cover %}
+                      <img class="card-photo" src="{{ article.cover.file.url }}" alt="{{ article.cover.alt_text }}" loading="lazy">
+                    {% endif %}
+                    <div class="card-body">
+                      <p class="badge">{{ article.category.name|default:block.get_block_type_display }}</p>
+                      {% if article.published_at %}
+                        <time class="card-date" datetime="{{ article.published_at|date:'c' }}">{{ article.published_at|date:"j F Y" }}</time>
+                      {% endif %}
+                      <h4 class="card-title">{{ article.title }}</h4>
+                      {% if article.excerpt %}<p class="card-text">{{ article.excerpt|truncatewords:30 }}</p>{% endif %}
+                      <a class="link-more" href="{% url 'articles' %}">Lire la suite</a>
+                    </div>
+                  </article>
+                {% endfor %}
+              </div>
+            {% else %}
+              <article class="card card-wide">
+                <div class="card-body">
+                  <p class="badge">{{ block.get_block_type_display }}</p>
+                  {% if block.starts_at %}
+                    <time class="card-date" datetime="{{ block.starts_at|date:'c' }}">{{ block.starts_at|date:"j F Y" }}</time>
+                  {% endif %}
+                  <h3 class="card-title">{{ block.title|default:"À la une" }}</h3>
+                  {% if block.subtitle %}<p class="card-text">{{ block.subtitle }}</p>{% endif %}
+                </div>
+              </article>
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="empty-state">Les actualités du club arrivent bientôt.</p>
+      {% endif %}
+    </section>
+
+    {% if open_edition %}
+      <section class="open-teaser" aria-labelledby="open-title">
+        {% if open_edition.banner %}
+          <img class="hero-image" src="{{ open_edition.banner.file.url }}" alt="{{ open_edition.banner.alt_text }}" loading="lazy">
+        {% endif %}
+        <div class="container open-teaser-content">
+          <p class="open-year">{{ open_edition.year }}</p>
+          <h2 id="open-title">{{ open_edition.title }}</h2>
+          {% if open_edition.subtitle %}<p class="lead">{{ open_edition.subtitle }}</p>{% endif %}
+          <a class="button" href="{% url 'open86' %}">Découvrir l'Open</a>
+        </div>
+      </section>
+    {% endif %}
+
+    {% if partners %}
+      <section class="section container" aria-labelledby="partners-title">
+        <h2 id="partners-title" class="section-title">Ils nous soutiennent</h2>
+        <ul class="partner-strip">
+          {% for partner in partners %}
+            <li>
+              {% if partner.website %}<a href="{{ partner.website }}" rel="noopener" target="_blank">{% endif %}
+              <img src="{{ partner.logo.file.url }}" alt="{{ partner.name }}" loading="lazy">
+              {% if partner.website %}</a>{% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
     {% endif %}
   </main>
 {% endblock %}
