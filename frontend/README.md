@@ -25,7 +25,7 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Recompile on save (served by Django from `backend/static/frontend/`)
 
 ```sh
 npm run dev

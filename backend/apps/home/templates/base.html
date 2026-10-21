@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Stade Poitevin Tennis{% endblock %}</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'frontend/app.css' %}">
   </head>
   <body>
@@ -27,5 +28,8 @@
       <p>Stade Poitevin Tennis</p>
       <p>Le tennis au coeur de Poitiers.</p>
     </footer>
+
+    {# Seules les pages avec un îlot Vue ([data-vue]) remplissent ce bloc avec frontend/app.js. #}
+    {% block scripts %}{% endblock %}
   </body>
 </html>

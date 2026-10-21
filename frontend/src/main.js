@@ -1,9 +1,9 @@
 import './assets/main.css'
 
-import { createApp } from 'vue'
+import { mountIslands } from './islands.js'
 
-import App from './App.vue'
+// Composants utilisables en îlots, par nom de `data-vue`.
+// Ex. : import OpenTimeline from './components/open86/OpenTimeline.vue'
+const components = {}
 
-const app = createApp(App)
-
-app.mount('#app')
+mountIslands(components)

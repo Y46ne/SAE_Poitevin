@@ -1,10 +1,29 @@
 {% extends "base.html" %}
-{% load static %}
 
-{% block title %}{{ home_data.name }} | Stade Poitevin Tennis{% endblock %}
+{% block title %}{{ page.name }} | Stade Poitevin Tennis{% endblock %}
 
 {% block content %}
-    <div id="app"></div>
-    {{ home_data|json_script:"home-data" }}
-    <script type="module" src="{% static 'frontend/app.js' %}"></script>
+  <main class="home">
+    <header class="hero">
+      <p class="eyebrow">Stade Poitevin Tennis</p>
+      <h1>{{ page.name }}</h1>
+      <p>Le tennis au coeur de Poitiers.</p>
+    </header>
+
+    {% if blocks %}
+      <section class="blocks" aria-label="À la une">
+        {% for block in blocks %}
+          <article class="block">
+            <p class="block-type">{{ block.get_block_type_display }}</p>
+            <h2>{{ block.title|default:"À la une" }}</h2>
+            {% if block.subtitle %}
+              <p>{{ block.subtitle }}</p>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </section>
+    {% else %}
+      <p class="empty-state">Les actualités du club arrivent bientôt.</p>
+    {% endif %}
+  </main>
 {% endblock %}
